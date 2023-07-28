@@ -9,7 +9,7 @@ Prerequisite:
 👉 let install dependency to deploy the application 
 
 ```sh
-cd book_shop_app
+cd main
 terraform init 
 ```
 
@@ -23,7 +23,7 @@ above command ask for key name then give `client_key` it will create pair of key
 
 edit below file according to your configuration
 ```sh
-vim book_shop_app/backend.tf
+vim main/backend.tf
 ```
 add below code in book_shop_app/backend.tf
 ```sh
@@ -39,10 +39,10 @@ terraform {
 ### Lets setup the variable for our Infrastructure
 create one file with the name of `terraform.tfvars` 
 ```sh
-vim book_shop_app/terraform.tfvars
+vim main/terraform.tfvars
 ```
 
-add below contents into `book_shop_app/terraform.tfvars` file
+add below contents into `main/terraform.tfvars` file
 ```javascript
 REGION                  = ""
 PROJECT_NAME            = ""
@@ -62,7 +62,7 @@ ADDITIONAL_DOMAIN_NAME  = ""
 ##  Now we are ready to provision our infrastructure on AWS cloud ⛅
 Get into project directory 
 ```sh
-cd book_shop_app
+cd main
 ```
 
 Type below command to validate the syntax and configuration of your Terraform files
