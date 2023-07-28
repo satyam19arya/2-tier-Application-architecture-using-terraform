@@ -24,7 +24,7 @@ resource "aws_autoscaling_group" "this" {
   health_check_grace_period = 300
   health_check_type         = var.asg_health_check_type #"ELB" or default EC2
   #availability_zones = var.availability_zones #["us-east-1a"]
-  vpc_zone_identifier = [var.PRI_SUB_3_A_ID,var.PRI_SUB_4_B_ID]
+  vpc_zone_identifier = [var.PRI_SUB_3_A_ID, var.PRI_SUB_4_B_ID]
   target_group_arns   = [var.TG_ARN] #var.target_group_arns
 
   enabled_metrics = [
@@ -41,7 +41,7 @@ resource "aws_autoscaling_group" "this" {
     id      = aws_launch_template.this.id
     version = aws_launch_template.this.latest_version #"$Latest"
   }
-#   depends_on = [module.aws_lb]
+  #   depends_on = [module.aws_lb]
 }
 
 # scale up policy

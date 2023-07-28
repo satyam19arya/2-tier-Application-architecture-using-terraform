@@ -84,18 +84,18 @@ module "RDS" {
 
 # create cloudfront distribution 
 module "CLOUDFRONT" {
-  source = "../modules/cloud-front"
+  source                  = "../modules/cloud-front"
   CERTIFICATE_DOMAIN_NAME = var.CERTIFICATE_DOMAIN_NAME
-  ALB_DOMAIN_NAME = module.ALB.ALB_DNS_NAME
-  ADDITIONAL_DOMAIN_NAME = var.ADDITIONAL_DOMAIN_NAME
-  PROJECT_NAME = module.VPC.PROJECT_NAME
+  ALB_DOMAIN_NAME         = module.ALB.ALB_DNS_NAME
+  ADDITIONAL_DOMAIN_NAME  = var.ADDITIONAL_DOMAIN_NAME
+  PROJECT_NAME            = module.VPC.PROJECT_NAME
 }
 
 
 # Add record in route 53 hosted zone
 
 module "ROUTE53" {
-  source = "../modules/route-s3"
-  CLOUDFRONT_DOMAIN_NAME = module.CLOUDFRONT.CLOUDFRONT_DOMAIN_NAME
+  source                    = "../modules/route-s3"
+  CLOUDFRONT_DOMAIN_NAME    = module.CLOUDFRONT.CLOUDFRONT_DOMAIN_NAME
   CLOUDFRONT_HOSTED_ZONE_ID = module.CLOUDFRONT.CLOUDFRONT_HOSTED_ZONE_ID
 }

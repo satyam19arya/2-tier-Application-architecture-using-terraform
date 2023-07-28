@@ -1,23 +1,23 @@
-variable "PROJECT_NAME"{}
+variable "PROJECT_NAME" {}
 variable "AMI" {
-    default = "ami-0f5ee92e2d63afc18"
+  default = "ami-0f5ee92e2d63afc18"
 }
 variable "CPU" {
-    default = "t2.micro"
+  default = "t2.micro"
 }
 variable "KEY_NAME" {}
 variable "CLIENT_SG_ID" {}
 variable "MAX_SIZE" {
-    default = 6
+  default = 6
 }
 variable "MIN_SIZE" {
-    default = 2
+  default = 2
 }
 variable "DESIRED_CAP" {
-    default = 3
+  default = 3
 }
 variable "asg_health_check_type" {
-    default = "ELB"
+  default = "ELB"
 }
 variable "PRI_SUB_3_A_ID" {}
 variable "PRI_SUB_4_B_ID" {}
