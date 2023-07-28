@@ -110,3 +110,15 @@ resource "aws_security_group" "jump_sg" {
     Name = "jump_sg"
   }
 }
+
+# dynamic "ingress" {
+#   for_each = [80,8080,443,22,3306]
+#   iterator = port
+#   content {
+#     description = "demo ingress"
+#     from_port   = port.value
+#     to_port     = port.value
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }
