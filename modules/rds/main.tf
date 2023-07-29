@@ -1,4 +1,4 @@
-resource "aws_db_subnet_group" "book-shop-subnet" {
+resource "aws_db_subnet_group" "rds_tier_subnet" {
   name       = var.DB_SUB_NAME
   subnet_ids = [var.PRI_SUB_5_A_ID, var.PRI_SUB_6_B_ID]
 }
@@ -21,9 +21,9 @@ resource "aws_db_instance" "book-db" {
 
   vpc_security_group_ids = [var.DB_SG_ID]
 
-  db_subnet_group_name = aws_db_subnet_group.book-shop-subnet.name
+  db_subnet_group_name = aws_db_subnet_group.rds_tier_subnet.name
 
   tags = {
-    Name = "Book-db"
+    Name = "2-tier-db"
   }
 }

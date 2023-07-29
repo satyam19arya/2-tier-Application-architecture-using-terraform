@@ -5,7 +5,7 @@ variable "DB_USERNAME" {}
 variable "DB_PASSWORD" {}
 
 variable "DB_SUB_NAME" {
-  default = "2-tier-app-db-subnet-group"
+  default = "terrform-rds-db-subnet"
 }
 variable "DB_NAME" {
   default = "test"
