@@ -1,5 +1,4 @@
-
-# creating VPC
+# create VPC
 module "VPC" {
   source           = "../modules/vpc"
   REGION           = var.REGION
@@ -12,22 +11,6 @@ module "VPC" {
   PRI_SUB_5_A_CIDR = var.PRI_SUB_5_A_CIDR
   PRI_SUB_6_B_CIDR = var.PRI_SUB_6_B_CIDR
 }
-
-
-# create NAT-GW
-module "NAT-GW" {
-  source = "../modules/nat-gateway"
-
-  PUB_SUB_1_A_ID = module.VPC.PUB_SUB_1_A_ID
-  IGW_ID         = module.VPC.IGW_ID
-  PUB_SUB_2_B_ID = module.VPC.PUB_SUB_2_B_ID
-  VPC_ID         = module.VPC.VPC_ID
-  PRI_SUB_3_A_ID = module.VPC.PRI_SUB_3_A_ID
-  PRI_SUB_4_B_ID = module.VPC.PRI_SUB_4_B_ID
-  PRI_SUB_5_A_ID = module.VPC.PRI_SUB_5_A_ID
-  PRI_SUB_6_B_ID = module.VPC.PRI_SUB_6_B_ID
-}
-
 
 # create security group 
 module "SG" {
@@ -67,11 +50,9 @@ module "ASG" {
   PRI_SUB_3_A_ID = module.VPC.PRI_SUB_3_A_ID
   PRI_SUB_4_B_ID = module.VPC.PRI_SUB_4_B_ID
   TG_ARN         = module.ALB.TG_ARN
-
 }
 
 # creating RDS instance
-
 module "RDS" {
   source         = "../modules/rds"
   DB_SG_ID       = module.SG.DB_SG_ID
@@ -80,7 +61,6 @@ module "RDS" {
   DB_USERNAME    = var.DB_USERNAME
   DB_PASSWORD    = var.DB_PASSWORD
 }
-
 
 # create cloudfront distribution 
 module "CLOUDFRONT" {
@@ -91,11 +71,10 @@ module "CLOUDFRONT" {
   PROJECT_NAME            = module.VPC.PROJECT_NAME
 }
 
-
 # Add record in route 53 hosted zone
-
 module "ROUTE53" {
   source                    = "../modules/route-s3"
   CLOUDFRONT_DOMAIN_NAME    = module.CLOUDFRONT.CLOUDFRONT_DOMAIN_NAME
   CLOUDFRONT_HOSTED_ZONE_ID = module.CLOUDFRONT.CLOUDFRONT_HOSTED_ZONE_ID
+  ADDITIONAL_DOMAIN_NAME    = var.ADDITIONAL_DOMAIN_NAME
 }

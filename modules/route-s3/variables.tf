@@ -3,5 +3,5 @@ variable "HOSTED_ZONE_NAME" {
 }
 
 variable "CLOUDFRONT_HOSTED_ZONE_ID" {}
-
 variable "CLOUDFRONT_DOMAIN_NAME" {}
+variable "ADDITIONAL_DOMAIN_NAME" {}

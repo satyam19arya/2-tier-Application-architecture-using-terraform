@@ -1,7 +1,6 @@
-
 resource "aws_db_subnet_group" "book-shop-subnet" {
   name       = var.DB_SUB_NAME
-  subnet_ids = [var.PRI_SUB_5_A_ID, var.PRI_SUB_6_B_ID] # Replace with your private subnet IDs
+  subnet_ids = [var.PRI_SUB_5_A_ID, var.PRI_SUB_6_B_ID]
 }
 
 resource "aws_db_instance" "book-db" {
@@ -20,7 +19,7 @@ resource "aws_db_instance" "book-db" {
   skip_final_snapshot     = true
   backup_retention_period = 0
 
-  vpc_security_group_ids = [var.DB_SG_ID] # Replace with your desired security group ID
+  vpc_security_group_ids = [var.DB_SG_ID]
 
   db_subnet_group_name = aws_db_subnet_group.book-shop-subnet.name
 

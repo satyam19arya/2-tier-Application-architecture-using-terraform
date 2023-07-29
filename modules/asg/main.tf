@@ -4,11 +4,6 @@ resource "aws_launch_template" "this" {
   instance_type = var.CPU
   key_name      = var.KEY_NAME
   user_data     = filebase64("../modules/asg/config.sh")
-
-
-  # network_interfaces {
-  #   associate_public_ip_address = false
-  # }
   vpc_security_group_ids = [var.CLIENT_SG_ID]
   tags = {
     Name = "${var.PROJECT_NAME}-tpl"
@@ -16,16 +11,14 @@ resource "aws_launch_template" "this" {
 }
 
 resource "aws_autoscaling_group" "this" {
-
   name                      = "${var.PROJECT_NAME}-asg"
   max_size                  = var.MAX_SIZE
   min_size                  = var.MIN_SIZE
   desired_capacity          = var.DESIRED_CAP
   health_check_grace_period = 300
-  health_check_type         = var.asg_health_check_type #"ELB" or default EC2
-  #availability_zones = var.availability_zones #["us-east-1a"]
+  health_check_type         = "ELB"
   vpc_zone_identifier = [var.PRI_SUB_3_A_ID, var.PRI_SUB_4_B_ID]
-  target_group_arns   = [var.TG_ARN] #var.target_group_arns
+  target_group_arns   = [var.TG_ARN]
 
   enabled_metrics = [
     "GroupMinSize",
@@ -39,9 +32,8 @@ resource "aws_autoscaling_group" "this" {
 
   launch_template {
     id      = aws_launch_template.this.id
-    version = aws_launch_template.this.latest_version #"$Latest"
+    version = aws_launch_template.this.latest_version
   }
-  #   depends_on = [module.aws_lb]
 }
 
 # scale up policy
@@ -55,7 +47,6 @@ resource "aws_autoscaling_policy" "scale_up" {
 }
 
 # scale up alarm
-# alarm will trigger the ASG policy (scale/down) based on the metric (CPUUtilization), comparison_operator, threshold
 resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
   alarm_name          = "${var.PROJECT_NAME}-asg-scale-up-alarm"
   alarm_description   = "asg-scale-up-cpu-alarm"

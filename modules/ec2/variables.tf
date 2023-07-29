@@ -2,7 +2,7 @@ variable "CPU" {
   default = "t2.micro"
 }
 variable "AMI" {
-  default = "ami-0f5ee92e2d63afc18"
+  default = "ami-053b0d53c279acc90"
 }
 
 variable "JUMP_SG_ID" {}

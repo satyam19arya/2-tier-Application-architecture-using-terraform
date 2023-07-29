@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 URL='https://www.tooplate.com/zip-templates/2131_wedding_lite.zip'
 ART_NAME='2131_wedding_lite'
 TEMPDIR="/tmp/webfiles"
@@ -8,7 +7,6 @@ TEMPDIR="/tmp/webfiles"
 # Set Variables for Ubuntu
 PACKAGE="apache2 wget unzip"
 SVC="apache2"
-
 
 echo "Running Setup on Ubuntu"
 # Installing Dependencies
