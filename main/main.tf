@@ -14,7 +14,7 @@ module "VPC" {
 
 # create security group 
 module "SG" {
-  source = "../modules/SG"
+  source = "../modules/sg"
   VPC_ID = module.VPC.VPC_ID
 }
 
@@ -64,7 +64,7 @@ module "RDS" {
 
 # create cloudfront distribution 
 module "CLOUDFRONT" {
-  source                  = "../modules/cloud-front"
+  source                  = "../modules/cloudfront"
   CERTIFICATE_DOMAIN_NAME = var.CERTIFICATE_DOMAIN_NAME
   ALB_DOMAIN_NAME         = module.ALB.ALB_DNS_NAME
   ADDITIONAL_DOMAIN_NAME  = var.ADDITIONAL_DOMAIN_NAME
@@ -73,7 +73,7 @@ module "CLOUDFRONT" {
 
 # Add record in route 53 hosted zone
 module "ROUTE53" {
-  source                    = "../modules/route-s3"
+  source                    = "../modules/route53"
   CLOUDFRONT_DOMAIN_NAME    = module.CLOUDFRONT.CLOUDFRONT_DOMAIN_NAME
   CLOUDFRONT_HOSTED_ZONE_ID = module.CLOUDFRONT.CLOUDFRONT_HOSTED_ZONE_ID
   ADDITIONAL_DOMAIN_NAME    = var.ADDITIONAL_DOMAIN_NAME
