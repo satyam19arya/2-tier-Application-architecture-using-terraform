@@ -34,7 +34,7 @@ module "SERVER" {
 # Creating Application Load balancer
 module "ALB" {
   source         = "../modules/alb"
-  PROJECT_NAME   = module.VPC.PROJECT_NAME
+  PROJECT_NAME   = var.PROJECT_NAME
   ALB_SG_ID      = module.SG.ALB_SG_ID
   PUB_SUB_1_A_ID = module.VPC.PUB_SUB_1_A_ID
   PUB_SUB_2_B_ID = module.VPC.PUB_SUB_2_B_ID
@@ -44,7 +44,7 @@ module "ALB" {
 # Crating Auto Scaling group
 module "ASG" {
   source         = "../modules/asg"
-  PROJECT_NAME   = module.VPC.PROJECT_NAME
+  PROJECT_NAME   = var.PROJECT_NAME
   KEY_NAME       = module.KEY.KEY_NAME
   CLIENT_SG_ID   = module.SG.CLIENT_SG_ID
   PRI_SUB_3_A_ID = module.VPC.PRI_SUB_3_A_ID
@@ -68,7 +68,7 @@ module "CLOUDFRONT" {
   CERTIFICATE_DOMAIN_NAME = var.CERTIFICATE_DOMAIN_NAME
   ALB_DOMAIN_NAME         = module.ALB.ALB_DNS_NAME
   ADDITIONAL_DOMAIN_NAME  = var.ADDITIONAL_DOMAIN_NAME
-  PROJECT_NAME            = module.VPC.PROJECT_NAME
+  PROJECT_NAME            = var.PROJECT_NAME
 }
 
 # Add record in route 53 hosted zone
