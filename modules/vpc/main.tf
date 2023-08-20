@@ -124,7 +124,7 @@ resource "aws_subnet" "pri-sub-6-b" {
 
 # This eip will be used for the nat-gateway in the public subnet pub-sub-1-a
 resource "aws_eip" "EIP-NAT-GW-A" {
-  vpc = true
+  domain = "vpc"
 
   tags = {
     Name = "NAT-GW-EIP-A"
@@ -133,7 +133,7 @@ resource "aws_eip" "EIP-NAT-GW-A" {
 
 # This eip will be used for the nat-gateway in the public subnet pub-sub-2-b
 resource "aws_eip" "EIP-NAT-GW-B" {
-  vpc = true
+  domain = "vpc"
 
   tags = {
     Name = "NAT-GW-EIP-B"

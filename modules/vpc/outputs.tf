@@ -1,11 +1,3 @@
-output "REGION" {
-  value = var.REGION
-}
-
-output "PROJECT_NAME" {
-  value = var.PROJECT_NAME
-}
-
 output "VPC_ID" {
   value = aws_vpc.vpc.id
 }
