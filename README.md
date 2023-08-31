@@ -83,4 +83,5 @@ terraform apply
 type `yes`, it will prompt you for permission..
 
 ## 🏠 Architecture
-Coming soon
+ ![terraform](https://github.com/satyam19arya/2-tier-Application-architecture-using-terraform/assets/77580311/3fe7c9c5-6044-49a6-b7f2-35b4e5367630)
+
